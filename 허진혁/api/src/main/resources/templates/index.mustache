@@ -1,0 +1,26 @@
+{{> layouts/header}}
+<table id="table" class="table table-horizontal">
+    <thead class="thead-strong">
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>등록일</th>
+        <th>조회수</th>
+    </tr>
+    </thead>
+    <tbody id="tbody">
+    {{# posts}}
+        <tr>
+            <td>{{id}}</td>
+            <td><a href="/posts/get/{{id}}">{{title}}</a> </td>
+            <td>{{writer}}</td>
+            <td>{{period}}</td>
+            <td>{{viewCount}}</td>
+        </tr>
+    {{/ posts}}
+</table>
+<div class="text-right">
+    <a href="/api/register" id ="btn" role="button" class="btn btn-primary bi bi-pencil-fill"> 글쓰기</a>
+</div>
+{{> layouts/footer}}
