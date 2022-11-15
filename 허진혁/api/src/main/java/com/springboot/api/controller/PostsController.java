@@ -5,24 +5,25 @@ import com.springboot.api.service.PostsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/posts")
 @RequiredArgsConstructor
 public class PostsController {
 
     private final PostsService postsService;
     private final PostsRepository postsRepository;
 
-    @GetMapping("/")
+    @GetMapping("")
     public String index(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
         return "index";
     }
-    @GetMapping("/register")
+
+    @GetMapping("/posts/new")
     public String register() {
-        return "form/register";
+        return "form/new";
     }
+
+
 }

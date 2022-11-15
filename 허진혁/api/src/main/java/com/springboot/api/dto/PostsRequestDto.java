@@ -15,26 +15,29 @@ public class PostsRequestDto {
     private String title;
     private String writer;
     private String content;
-    private Period period;
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
     private Integer viewCount;
 
     @Builder
-    public PostsRequestDto(Long id, String title, String writer, String content, Period period, Integer viewCount) {
+    public PostsRequestDto(Long id, String title, String writer, String content, LocalDateTime createdDate, LocalDateTime modifiedDate, Integer viewCount) {
         this.id = id;
         this.title = title;
         this.writer = writer;
         this.content = content;
-        this.period = period;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
         this.viewCount = viewCount;
     }
 
+    /* Dto -> Entity*/
     public Posts toEntity() {
         return Posts.builder()
                 .id(id)
                 .title(title)
                 .writer(writer)
                 .content(content)
-                .viewCount(viewCount)
+                .viewCount(0)
                 .build();
     }
 }

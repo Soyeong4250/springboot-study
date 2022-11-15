@@ -28,7 +28,6 @@ public class Posts {
     private User user;
 
     @Builder
-
     public Posts(Long id, String title, String content, String writer, Integer viewCount, Period period) {
         this.id = id;
         this.title = title;

@@ -7,16 +7,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-@SpringBootApplication
+@SpringBootTest
 @Slf4j
 class PostsServiceTest {
 
     @Autowired
-    private PostsRepository postsRepository;
     private PostsService postsService;
+
+    @Autowired
+    PostsRepository postsRepository;
 
     @AfterEach
     void clear() {
@@ -32,7 +33,7 @@ class PostsServiceTest {
                 .viewCount(10)
                 .build();
 
-        postsService.register(posts);
+        postsService.write(posts);
         log.info("posts={}", posts);
     }
 }
