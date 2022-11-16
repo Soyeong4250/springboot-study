@@ -1,7 +1,8 @@
 server:
   port: 8080
   servlet:
-    force-response: true
+    encoding:
+      force-response: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
