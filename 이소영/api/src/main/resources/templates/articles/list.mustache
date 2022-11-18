@@ -1,0 +1,25 @@
+{{> layouts/header}}
+<div id="wrapper" class="container mt-3">
+    <div id="pageTitle">
+        <h1>게시글 목록</h1>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Title</th>
+            <th scope="col">Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{# articles}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{title}}</td>
+            <td>{{content}}</td>
+        </tr>
+        {{/ articles}}
+        </tbody>
+    </table>
+</div>
+{{> layouts/footer}}
