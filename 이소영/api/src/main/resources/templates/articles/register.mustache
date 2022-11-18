@@ -3,12 +3,12 @@
     <div id="pageTitle">
         <h1>게시글 작성하기</h1>
     </div>
-    <form class="mt-3" action="/article" method="post">
-        <div class="mb-3">
+    <form class="mt-3" action="/articles" method="post">
+        <div class="form-group mb-3">
             <label for="titleInput" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="제목을 작성해주세요.">
+            <input type="text" class="form-control" name="title" id="title" placeholder="제목을 작성해주세요.">
         </div>
-        <div class="mb-3">
+        <div class="form-group mb-3">
             <label for="contentInput" class="form-label">Content</label>
             <textarea class="form-control" id="content" name="content" rows="20" placeholder="내용을 작성해주세요."></textarea>
         </div>
