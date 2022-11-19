@@ -5,7 +5,7 @@
     </div>
     <table class="table">
         <thead>
-        <tr>
+        <tr style="background-color: #fff7e9;">
             <th scope="col">Id</th>
             <th scope="col">Title</th>
             <th scope="col">Content</th>
@@ -21,6 +21,9 @@
             <td>{{writer}}</td>
         </tr>
         {{/ articles}}
+        {{^ articles}}
+            <div> 현재 등록된 게시글이 없습니다. </div>
+        {{/articles}}
         </tbody>
     </table>
 </div>
