@@ -10,13 +10,15 @@ import lombok.*;
 public class ArticleRequestDto {
     private String title;
     private String content;
+    private String writer;
 
-    public ArticleRequestDto(String title, String content) {
+    public ArticleRequestDto(String title, String content, String writer) {
         this.title = title;
         this.content = content;
+        this.writer = writer;
     }
 
     public Article toEntity() {
-        return new Article(this.title, this.content);
+        return new Article(this.title, this.content, this.writer);
     }
 }
