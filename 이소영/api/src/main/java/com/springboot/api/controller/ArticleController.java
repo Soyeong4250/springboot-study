@@ -5,10 +5,11 @@ import com.springboot.api.domain.entity.Article;
 import com.springboot.api.repository.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @Slf4j
@@ -31,6 +32,14 @@ public class ArticleController {
         log.info(articleRequestDto.toString());
         Article savedArticle = articleRepository.save(articleRequestDto.toEntity());
         log.info("generatedId : {}", savedArticle.getId());
-        return "";
+        return "redirect:/articles/list";
+    }
+
+    @GetMapping("/list")
+    public String findAll(Model model) {
+        List<Article> articleList = articleRepository.findAll();
+        log.info("articleList size:{}", articleList.size());
+        model.addAttribute("articles", articleList);
+        return "articles/list";
     }
 }
