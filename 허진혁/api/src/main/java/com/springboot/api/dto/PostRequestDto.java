@@ -7,10 +7,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Getter
+@Getter @Setter
 public class PostRequestDto {
 
-    private Long id;
     private String title;
     private String writer;
     private String content;
@@ -19,8 +18,7 @@ public class PostRequestDto {
     private Integer viewCount;
 
     @Builder
-    public PostRequestDto(Long id, String title, String writer, String content, LocalDateTime createdDate, LocalDateTime modifiedDate, Integer viewCount) {
-        this.id = id;
+    public PostRequestDto(String title, String writer, String content, LocalDateTime createdDate, LocalDateTime modifiedDate, Integer viewCount) {
         this.title = title;
         this.writer = writer;
         this.content = content;
@@ -32,7 +30,6 @@ public class PostRequestDto {
     /* Dto -> Entity*/
     public Post toEntity() {
         return Post.builder()
-                .id(id)
                 .title(title)
                 .writer(writer)
                 .content(content)
