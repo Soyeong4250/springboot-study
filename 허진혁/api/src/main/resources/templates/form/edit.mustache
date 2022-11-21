@@ -1,7 +1,7 @@
 {{> layouts/header}}
 <h2>edit page</h2>
-{{# article}}
-    <form action="/post/list/{{id}}/update" method="post">
+{{# posts}}
+    <form action="/posts/{{id}}/update" method="post">
         <input type="hidden" name="id" value="{{id}}">
         <input type="text" name="title" value="{{title}}">
         <textarea rows="3" name="content" value="{{content}}"></textarea>
@@ -9,5 +9,5 @@
     </form>
     <a href="/post/list/{{id}}">조회 페이지</a>
     <a href="/post/list">목록</a>
-{{/ article}}
+{{/ posts}}
 {{> layouts/footer}}
