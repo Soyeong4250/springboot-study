@@ -1,15 +1,14 @@
 package com.springboot.api.dto;
 
 
-import com.springboot.api.domain.Period;
-import com.springboot.api.domain.Posts;
+import com.springboot.api.domain.Post;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class PostsRequestDto {
+public class PostRequestDto {
 
     private Long id;
     private String title;
@@ -20,7 +19,7 @@ public class PostsRequestDto {
     private Integer viewCount;
 
     @Builder
-    public PostsRequestDto(Long id, String title, String writer, String content, LocalDateTime createdDate, LocalDateTime modifiedDate, Integer viewCount) {
+    public PostRequestDto(Long id, String title, String writer, String content, LocalDateTime createdDate, LocalDateTime modifiedDate, Integer viewCount) {
         this.id = id;
         this.title = title;
         this.writer = writer;
@@ -31,8 +30,8 @@ public class PostsRequestDto {
     }
 
     /* Dto -> Entity*/
-    public Posts toEntity() {
-        return Posts.builder()
+    public Post toEntity() {
+        return Post.builder()
                 .id(id)
                 .title(title)
                 .writer(writer)

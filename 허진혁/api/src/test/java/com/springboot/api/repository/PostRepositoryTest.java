@@ -1,6 +1,6 @@
 package com.springboot.api.repository;
 
-import com.springboot.api.domain.Posts;
+import com.springboot.api.domain.Post;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -9,30 +9,28 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @Slf4j
-class PostsRepositoryTest {
+class PostRepositoryTest {
 
     @Autowired
-    private PostsRepository postsRepository;
+    private PostRepository postRepository;
 
     @AfterEach
     void clear() {
-        postsRepository.deleteAll();
+        postRepository.deleteAll();
     }
 
     @Test
     void PostsSaveAndGet() {
-        Posts posts = Posts.builder()
+        Post posts = Post.builder()
                 .title("title1")
                 .content("content1")
                 .writer("writer1")
                 .build();
-        postsRepository.save(posts);
+        postRepository.save(posts);
 
-        List<Posts> postsList = postsRepository.findAll();
+        List<Post> postsList = postRepository.findAll();
 
         log.info("postsList={}", postsList.get(0));
     }

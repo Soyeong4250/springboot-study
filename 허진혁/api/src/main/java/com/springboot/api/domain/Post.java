@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Posts {
+public class Post {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,7 +28,7 @@ public class Posts {
     private User user;
 
     @Builder
-    public Posts(Long id, String title, String content, String writer, Integer viewCount, Period period) {
+    public Post(Long id, String title, String content, String writer, Integer viewCount, Period period) {
         this.id = id;
         this.title = title;
         this.content = content;
