@@ -27,7 +27,7 @@ public class PostController {
 
     @GetMapping("")
     public String index() {
-        return "redirect:/form/posts";
+        return "redirect:/posts/list";
     }
 
     @GetMapping("/list")
@@ -49,13 +49,13 @@ public class PostController {
 
     @PostMapping("/new")
     public String write(PostRequestDto postRequestDto) {
-        log.info("Controller write. writer={}, title", postRequestDto.getWriter(), postRequestDto.getTitle());
+        log.info("Controller write. writer={}, title={}", postRequestDto.getWriter(), postRequestDto.getTitle());
         Post post = postRequestDto.toEntity();
         postRepository.save(post);
         return "redirect:/posts/" + post.getId();
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
         Optional<Post> posts = postRepository.findById(id);
         if (!posts.isEmpty()) {
@@ -66,7 +66,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/list/{id}/update")
+    @GetMapping("/{id}/update")
     public String updateForm(@PathVariable Long id, PostRequestDto postRequestDto, Model model) {
         Optional<Post> findPost = postRepository.findById(id);
         if (!findPost.isEmpty()) {
@@ -77,7 +77,7 @@ public class PostController {
         }
     }
 
-    @PostMapping("/list/{id}/update")
+    @PostMapping("/{id}/update")
     public String update(PostRequestDto postRequestDto, Model model) {
         log.info("게시글 수정. writer={}, title={}", postRequestDto.getWriter(), postRequestDto.getTitle());
         Post savePost = postRepository.save(postRequestDto.toEntity());
@@ -85,7 +85,7 @@ public class PostController {
         return "redirect:/posts/" + savePost.getId();
     }
 
-    @GetMapping("/list{id}/delete")
+    @GetMapping("{id}/delete")
     public String deleteById(@PathVariable Long id) {
         postRepository.deleteById(id);
         return "redirect:/posts/list";
