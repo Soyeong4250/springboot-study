@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>어디 병원?</title>
+    <style>
+        @font-face{
+            font-family: 'NanumSquareNeo-Variable';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        html{
+            height : 100%;
+        }
+        body{
+            height : 100%;
+            font-family: 'NanumSquareNeo-Variable';
+            display: flex;
+            flex-direction: column;
+            font-size: 1em;
+        }
+        header, footer{
+            min-height: 100px;
+            background-color: #fff7e9;
+            line-height: inherit;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+            cursor: grab;
+        }
+        a:visited, a:hover{
+            color: black;
+        }
+        .nav .nav-link{
+            text-decoration: none;
+            color: #ff731d;
+            cursor: grab;
+        }
+        .nav .nav-link:active{
+            color: #1746a2;
+        }
+
+        #wrapper{
+            flex: 1;
+        }
+        a img{
+            filter:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="grayscale"><feColorMatrix type="matrix" values="0.3333" 0.3333="" 0="" 10=""></feColorMatrix></filter></svg>#grayscale'); /* Firefox 3.5+, IE10 */
+            filter:gray; /* IE6-9 */
+            -webkit-filter: grayscale(90%); /* Chrome 19+ &amp; Safari 6+ */
+            -webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */
+            -webkit-backface-visibility: hidden; /* Fix for transition flickering */
+        }
+        a img:hover{
+            filter: none;
+            -webkit-filter: grayscale(0%);
+        }
+    </style>
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+<header class="row">
+    <h1 class="col-2">로고 들어갈곳</h1>
+    <ul class="nav col-9" style="font-size:1.3em;">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/articles/list">Articles</a>
+        </li>
+    </ul>
+    <div class="col-1">로그인 버튼</div>
+</header>
