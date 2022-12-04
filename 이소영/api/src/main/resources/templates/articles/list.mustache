@@ -15,16 +15,19 @@
         <tbody>
         {{# articles}}
         <tr>
-            <td>{{id}}</td>
+            <td>{{articleId}}</td>
             <td>{{title}}</td>
-            <td>{{content}}</td>
+            <td><a href="/articles/{{articleId}}"> {{content}} </a></td>
             <td>{{writer}}</td>
         </tr>
         {{/ articles}}
         {{^ articles}}
-            <div> 현재 등록된 게시글이 없습니다. </div>
+            <td class="text-center" colspan="4"> 현재 등록된 게시글이 없습니다. </td>
         {{/articles}}
         </tbody>
     </table>
+    <div class="d-flex justify-content-end">
+        <a class="btn btn-outline-primary me-3" href="/articles/new" role="button">Write</a>
+    </div>
 </div>
 {{> layouts/footer}}
