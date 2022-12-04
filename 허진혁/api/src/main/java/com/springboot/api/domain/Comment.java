@@ -1,11 +1,16 @@
 package com.springboot.api.domain;
 
+import lombok.AccessLevel;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Getter
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "comments")
 public class Comment extends BaseTime {
 
@@ -15,7 +20,7 @@ public class Comment extends BaseTime {
     private Long id;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
+    private String comment;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -24,4 +29,12 @@ public class Comment extends BaseTime {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
+
+    @Builder
+    public Comment(Long id, String comment, User user, Post post) {
+        this.id = id;
+        this.comment = comment;
+        this.user = user;
+        this.post = post;
+    }
 }
