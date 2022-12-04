@@ -2,6 +2,7 @@ package com.springboot.api.controller;
 
 import com.springboot.api.domain.Post;
 import com.springboot.api.dto.PostRequestDto;
+import com.springboot.api.dto.PostResponseDto;
 import com.springboot.api.repository.PostRepository;
 import com.springboot.api.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -43,15 +44,15 @@ public class PostController {
 
 
     @GetMapping("/new")
-    public String writeForm() {
+    public String createPostForm() {
         return "form/new";
     }
 
     @PostMapping("/new")
-    public String write(PostRequestDto postRequestDto) {
+    public String createPost(PostRequestDto postRequestDto) {
         log.info("Controller write. writer={}, title={}", postRequestDto.getWriter(), postRequestDto.getTitle());
         Post post = postRequestDto.toEntity();
-        postRepository.save(post);
+        postService.createPost(postRequestDto);
         return "redirect:/posts/" + post.getId();
     }
 
@@ -78,7 +79,7 @@ public class PostController {
     }
 
     @PostMapping("/{id}/update")
-    public String update(PostRequestDto postRequestDto, Model model) {
+    public String update(@PathVariable Long postId, PostRequestDto postRequestDto, Model model) {
         log.info("게시글 수정. writer={}, title={}", postRequestDto.getWriter(), postRequestDto.getTitle());
         Post savePost = postRepository.save(postRequestDto.toEntity());
         model.addAttribute("posts", savePost);
@@ -89,5 +90,18 @@ public class PostController {
     public String deleteById(@PathVariable Long id) {
         postRepository.deleteById(id);
         return "redirect:/posts/list";
+    }
+
+    @GetMapping("/search")
+    public String search(String keyword, Model model,
+                         @PageableDefault(sort = "id", direction = Sort.Direction.DESC)Pageable pageable) {
+        Page<Post> searchList = postService.search(pageable, keyword);
+        model.addAttribute("searchList", searchList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("previous", pageable.previousOrFirst());
+        model.addAttribute("next", pageable.next());
+        model.addAttribute("hasPrevious", searchList.hasPrevious());
+        model.addAttribute("hasNext", searchList.hasNext());
+        return "form/search";
     }
 }
