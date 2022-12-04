@@ -44,20 +44,6 @@ public class PostService {
         return response;
     }
 
-    @Transactional
-    public PostResponseDto update(PostRequestDto dto) {
-        log.info("PostsService update()실행. writer={}, title={}", dto.getWriter(), dto.getTitle());
-        Post post = dto.toEntity();
-        postRepository.save(post);
-        PostResponseDto response = PostResponseDto.from(post);
-        return response;
-    }
-
-    @Transactional
-    public void deleteById(Long id) {
-        postRepository.deleteById(id);
-    }
-
     /** 정렬된 페이지*/
     @Transactional(readOnly = true)
     public Page<Post> pageList(Pageable pageable) {
@@ -71,4 +57,22 @@ public class PostService {
         return pages;
     }
 
+    @Transactional
+    public PostResponseDto update(PostRequestDto dto) {
+        log.info("PostsService update()실행. writer={}, title={}", dto.getWriter(), dto.getTitle());
+        Post post = dto.toEntity();
+        postRepository.save(post);
+        PostResponseDto response = PostResponseDto.from(post);
+        return response;
+    }
+
+    @Transactional
+    public int updateViewCount(Long postId) {
+        return postRepository.updateViewCount(postId);
+    }
+
+    @Transactional
+    public void deleteById(Long id) {
+        postRepository.deleteById(id);
+    }
 }

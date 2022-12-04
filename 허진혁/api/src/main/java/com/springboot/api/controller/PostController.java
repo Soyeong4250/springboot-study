@@ -60,6 +60,7 @@ public class PostController {
     public String findById(@PathVariable Long id, Model model) {
         Optional<Post> posts = postRepository.findById(id);
         if (!posts.isEmpty()) {
+            postService.updateViewCount(id);
             model.addAttribute("posts", posts.get());
             return "form/read";
         } else {
