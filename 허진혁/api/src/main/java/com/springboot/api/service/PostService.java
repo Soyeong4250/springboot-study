@@ -21,7 +21,7 @@ public class PostService {
     private final PostRepository postRepository;
 
     @Transactional
-    public PostResponseDto write(PostRequestDto dto) {
+    public PostResponseDto createPost(PostRequestDto dto) {
         log.info("PostsService write()실행. writer={}, title={}", dto.getWriter(), dto.getTitle());
         Post post = dto.toEntity();
         postRepository.save(post);
@@ -30,14 +30,15 @@ public class PostService {
     }
 
     @Transactional(readOnly = true)
-    public Page<PostResponseDto> getAll(Pageable pageable) {
+    public Page<PostResponseDto> findAllByPage(Pageable pageable) {
         Page<Post> pages = postRepository.findAll(pageable);
         return pages.map(PostResponseDto::from);
     }
 
     @Transactional(readOnly = true)
-    public PostResponseDto getById(Long id) {
-        Optional<Post> findPosts = postRepository.findById(id);
+    public PostResponseDto findById(Long id) {
+        Optional<Post> findPosts = Optional.ofNullable(postRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("해당 게시글은 존재하지 않습니다. id: " + id)));
         Post post = findPosts.get();
         PostResponseDto response = PostResponseDto.from(post);
         return response;
