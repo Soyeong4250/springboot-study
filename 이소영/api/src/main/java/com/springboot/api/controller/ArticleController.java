@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -31,7 +32,7 @@ public class ArticleController {
     public String register(ArticleRequestDto articleRequestDto) {
         log.info(articleRequestDto.toString());
         Article savedArticle = articleRepository.save(articleRequestDto.toEntity());
-        log.info("generatedId : {}", savedArticle.getId());
+        log.info("generatedId : {}", savedArticle.getArticleId());
         return "redirect:/articles/list";
     }
 
@@ -41,5 +42,17 @@ public class ArticleController {
         log.info("articleList size:{}", articleList.size());
         model.addAttribute("articles", articleList);
         return "articles/list";
+    }
+
+    @GetMapping("/{articleId}")
+    public String getArticle(@PathVariable Long articleId,  Model model) {
+        Optional<Article> optArticle = articleRepository.findById(articleId);
+        if(!optArticle.isEmpty()) {
+            model.addAttribute("article", optArticle.get());
+            return "articles/view";
+        }else {
+            model.addAttribute("message", String.format("%d번 게시글이 존재하지 않습니다", articleId));
+            return "error";
+        }
     }
 }
