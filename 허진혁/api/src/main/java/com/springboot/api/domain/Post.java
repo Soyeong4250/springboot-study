@@ -10,14 +10,18 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Post {
+public class Post extends Period{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 100, nullable = false)
     private String title;
+    @Column(length = 500, nullable = false)
     private String content;
+    @Column(nullable = false)
     private String writer;
+    @Column(nullable = false)
     private Integer viewCount;
 
     @Embedded
