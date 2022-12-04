@@ -4,7 +4,7 @@ package com.springboot.api.dto;
 import com.springboot.api.domain.Post;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -14,7 +14,8 @@ public class PostRequestDto {
     private String title;
     private String writer;
     private String content;
-    private LocalDateTime createdDate;
+    private LocalDate createdDate;
+    private LocalDate modifiedDate;
     private Integer viewCount;
 
     /* Dto -> Entity*/
