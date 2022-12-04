@@ -3,22 +3,23 @@ package com.springboot.api.domain;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @MappedSuperclass
-@Embeddable
-public class Period {
+@EntityListeners(AuditingEntityListener.class)
+public abstract class BaseTime {
 
     @Column(name = "created_date")
     @CreatedDate
-    private LocalDateTime createdDate;
+    private LocalDate createdDate;
 
     @Column(name = "modified_date")
     @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    private LocalDate modifiedDate;
 }
