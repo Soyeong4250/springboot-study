@@ -1,4 +1,4 @@
-package com.springboot.api.dto;
+package com.springboot.api.domain.dto;
 
 import com.springboot.api.domain.Post;
 import lombok.AccessLevel;

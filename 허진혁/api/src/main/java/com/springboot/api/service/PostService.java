@@ -1,8 +1,8 @@
 package com.springboot.api.service;
 
 import com.springboot.api.domain.Post;
-import com.springboot.api.dto.PostResponseDto;
-import com.springboot.api.dto.PostRequestDto;
+import com.springboot.api.domain.dto.PostResponseDto;
+import com.springboot.api.domain.dto.PostRequestDto;
 import com.springboot.api.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
