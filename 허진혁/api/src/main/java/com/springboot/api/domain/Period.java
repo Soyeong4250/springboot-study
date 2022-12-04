@@ -7,7 +7,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @MappedSuperclass
@@ -16,9 +16,9 @@ public class Period {
 
     @Column(name = "created_date")
     @CreatedDate
-    private LocalDateTime createdDate;
+    private LocalDate createdDate;
 
     @Column(name = "modified_date")
     @LastModifiedDate
-    private LocalDateTime modifiedDate;
+    private LocalDate modifiedDate;
 }
