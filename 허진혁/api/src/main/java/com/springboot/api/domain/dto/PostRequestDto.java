@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter @Setter
 public class PostRequestDto {
 
+    private Long id;
     private String title;
     private String writer;
     private String content;
@@ -21,6 +22,7 @@ public class PostRequestDto {
     /* Dto -> Entity*/
     public Post toEntity() {
         return Post.builder()
+                .id(id)
                 .title(title)
                 .writer(writer)
                 .content(content)
