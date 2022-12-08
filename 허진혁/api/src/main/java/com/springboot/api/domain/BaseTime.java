@@ -8,7 +8,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @MappedSuperclass
@@ -17,9 +18,9 @@ public abstract class BaseTime {
 
     @Column(name = "created_date")
     @CreatedDate
-    private LocalDate createdDate;
+    private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/mm/dd HH:mm"));
 
     @Column(name = "modified_date")
     @LastModifiedDate
-    private LocalDate modifiedDate;
+    private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/mm/dd HH:mm"));
 }
