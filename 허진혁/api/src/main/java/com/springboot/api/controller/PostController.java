@@ -2,6 +2,7 @@ package com.springboot.api.controller;
 
 import com.springboot.api.domain.Post;
 import com.springboot.api.domain.dto.PostRequestDto;
+import com.springboot.api.domain.dto.PostResponseDto;
 import com.springboot.api.repository.PostRepository;
 import com.springboot.api.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -50,9 +51,8 @@ public class PostController {
     @PostMapping("/new")
     public String createPost(PostRequestDto postRequestDto) {
         log.info("Controller write. writer={}, title={}", postRequestDto.getWriter(), postRequestDto.getTitle());
-        Post post = postRequestDto.toEntity();
-        postService.createPost(postRequestDto);
-        return "redirect:/posts/" + post.getId();
+        PostResponseDto response = postService.createPost(postRequestDto);
+        return "redirect:/posts/" + response.getId();
     }
 
     @GetMapping("/{id}")
