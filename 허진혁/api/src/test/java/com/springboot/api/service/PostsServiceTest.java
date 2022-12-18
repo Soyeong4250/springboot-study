@@ -1,10 +1,8 @@
 package com.springboot.api.service;
 
-import com.springboot.api.dto.PostRequestDto;
 import com.springboot.api.repository.PostRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -23,16 +21,12 @@ class PostsServiceTest {
         postRepository.deleteAll();
     }
 
-    @Test
+    /*@Test
     void 게시글_생성() {
-        PostRequestDto posts = PostRequestDto.builder()
-                .title("Test title")
-                .writer("Test writer")
-                .content("Test content")
-                .viewCount(10)
-                .build();
+        PostRequestDto posts = new PostRequestDto("Test title", "Test writer", "Test content", "2022.12.04", 0);
 
-        postService.write(posts);
+
+        postService.createPost(posts);
         log.info("posts={}", posts);
-    }
+    }*/
 }

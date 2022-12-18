@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,8 +14,8 @@ public class CommentRequestDto {
 
     private Long id;
     private String comment;
-    private LocalDate createdDate;
-    private LocalDate modifiedDate;
+    private String createdDate;
+    private String modifiedDate;
     private Post post;
 
     public Comment toEntity() {
